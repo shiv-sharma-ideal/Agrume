@@ -490,7 +490,8 @@ extension Agrume: AgrumeCellDelegate {
   }
   
   private func dismissCompletion(_ finished: Bool) {
-    presentingViewController?.dismiss(animated: false) { [unowned self] in
+    presentingViewController?.dismiss(animated: false) { [weak self] in
+      guard let self = self else { return }
       self.cleanup()
       self.didDismiss?()
     }
