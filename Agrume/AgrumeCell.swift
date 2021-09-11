@@ -162,8 +162,8 @@ extension AgrumeCell: UIGestureRecognizerDelegate {
     contentView.isUserInteractionEnabled = false
     
     CATransaction.begin()
-    CATransaction.setCompletionBlock { [unowned self] in
-      self.contentView.isUserInteractionEnabled = true
+    CATransaction.setCompletionBlock { [weak self] in
+      self?.contentView.isUserInteractionEnabled = true
     }
     scrollView.zoom(to: destination, animated: true)
     CATransaction.commit()
